@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,9 @@ class CampaignsController extends Controller {
 	 */
 	public function show($id) {
 		//
+		$campaign = Campaign::find($id);
+
+		return view('campaigns.show')->with('campaign', $campaign);
 	}
 
 	/**
