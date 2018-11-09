@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CampaignsController extends Controller {
@@ -18,11 +18,13 @@ class CampaignsController extends Controller {
 	}
 
 	/**
+	 * @param Request $request
+	 *
 	 * @return \Illuminate\Http\Response|string
 	 */
-	public function index(User $user) {
-		$campaigns = DB::table('campaigns')->join('participants', 'campaigns.id', '=', 'participants.campaign_id')
-		               ->where('participants.user_id', $user->id)->get();
+	public function index(Request $request) {
+		$campaigns = DB::table('campaigns')->join('participants', 'participants.campaign_id', '=', 'campaigns.id')
+		               ->where('participants.user_id', '=', Auth::id())->get();
 
 		return view('campaigns.index', compact('campaigns'))->with('campaigns', $campaigns);
 	}
