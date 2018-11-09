@@ -2,11 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Campaign;
-use App\Participant;
-use App\User;
-use Illuminate\Http\Request;
-
 class HomeController extends Controller {
 	/**
 	 * Create a new controller instance.
@@ -14,7 +9,7 @@ class HomeController extends Controller {
 	 * @return void
 	 */
 	public function __construct() {
-		$this->middleware( 'auth' );
+		$this->middleware('auth');
 	}
 
 	/**
@@ -24,6 +19,6 @@ class HomeController extends Controller {
 	 */
 	public function index() {
 
-		return view( 'home' );
+		return view('home');
 	}
 }

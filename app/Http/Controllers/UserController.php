@@ -8,10 +8,6 @@ class UserController extends Controller {
 	//
 
 	function index() {
-		$campaigns = "HIII";
 
-		return view('campaigns').with([
-				'campaigns' => $campaigns
-			]);
 	}
 }
