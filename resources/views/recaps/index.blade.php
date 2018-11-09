@@ -22,24 +22,26 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
+            <th width="800px">Details</th>
+            <th>Created At</th>
+            <th width="20px">Action</th>
         </tr>
         @foreach ($recaps as $recap)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $recap->name }}</td>
             <td>{{ $recap->detail }}</td>
+            <td>{{ $recap->created_at }}</td>
             <td>
                 <form action="{{ route('recaps.destroy',$recap->id) }}" method="POST">
-   
+
                     <a class="btn btn-info" href="{{ route('recaps.show',$recap->id) }}">Show</a>
-    
+
                     <a class="btn btn-primary" href="{{ route('recaps.edit',$recap->id) }}">Edit</a>
-   
+
                     @csrf
                     @method('DELETE')
-      
+
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>

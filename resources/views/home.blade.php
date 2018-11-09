@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    Welcome
+                    <table class="campaign-table">
+                        
+                    </table>
                 </div>
             </div>
         </div>
