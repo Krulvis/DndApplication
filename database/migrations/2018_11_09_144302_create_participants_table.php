@@ -12,7 +12,7 @@ class CreateParticipantsTable extends Migration {
 	 */
 	public function up() {
 		Schema::create( 'participants', function ( Blueprint $table ) {
-			$table->integer( 'account_id' );
+			$table->integer( 'user_id' );
 			$table->integer( 'campaign_id' );
 			$table->string( 'role' );
 			$table->timestamps();
