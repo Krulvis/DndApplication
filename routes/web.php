@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('recaps', 'RecapController');
-
 Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('recaps', 'RecapController');
+});

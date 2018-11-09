@@ -10470,6 +10470,10 @@ body {
   font-family: 'MedievalSharp';
 }
 
+h2 {
+  font-weight: bold;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
