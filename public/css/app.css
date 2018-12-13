@@ -10468,6 +10468,9 @@ a.text-dark:focus {
 
 body {
   font-family: 'MedievalSharp';
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.9;
 }
 
 h2 {
