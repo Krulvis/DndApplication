@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Parse;
 use Illuminate\Http\Request;
-use Illuminate\Database\Schema\Builder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 // use App\Item;
 
@@ -45,12 +47,12 @@ class ParseController extends Controller
         $data = $request->input();
         foreach (array_keys($data) as $key) {
 
-            if (Schema::hasColumn($key)) {
+            if (!Schema::hasColumn('parses', $key)) {
                 array_push($result, $key);
-//                Schema::table('parses', function($table){
-//                    $table->string('misc');
-//                });
-                //DB::statement('ALTER TABLE parses ADD ' . $key . ' VARCHAR(13) );');
+                Schema::table('parses', function (Blueprint $table) {
+                    $table->string($key);
+                });
+//                DB::statement('ALTER TABLE parses ADD ' . $key . ' VARCHAR(13) );');
             }
         }
 
