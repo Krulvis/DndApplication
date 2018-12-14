@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Schema;
 class ParseController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listings of the resource.
      *
      * @return \Illuminate\Http\Response
      */
