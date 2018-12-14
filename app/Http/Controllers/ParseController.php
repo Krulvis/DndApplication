@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Parse;
-// use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Database\Schema\Builder;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Support\Facades\Route;
+// use App\Item;
 
 class ParseController extends Controller
 {
@@ -34,47 +35,32 @@ class ParseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        // echo('test');l
-        // $request->json(validate([
-        //     'body'=>'required',
-        //     'name'=>'required',
-        //     'weight'=>'required',
-        //     'price'=>'required',
-        //     'misc'=>'required',
-        //     'source'=>'',
-        //     'type'=>'',
-        //   ]));
-        //   $parse = new Parse([
-        //     'body' => $request->get('body'),
-        //     'name'=> $request->get('name'),
-        //     'weight'=> $request->get('weight'),
-        //     'price'=> $request->get('price'),
-        //     'misc'=> $request->get('misc'),
-        //     'source'=> $request->get('source'),
-        //     'type'=> $request->get('type')
-        //   ]);
 
-        // var_dump(file_get_contents('php://input'), true);
+        $result = [];
+        $data = $request->input();
+        foreach (array_keys($data) as $key) {
 
-        $data = $request->json()->all();
-        return response()->json($data);
+            if (Schema::hasColumn($key)) {
+                array_push($result, $key);
+//                Schema::table('parses', function($table){
+//                    $table->string('misc');
+//                });
+                //DB::statement('ALTER TABLE parses ADD ' . $key . ' VARCHAR(13) );');
+            }
+        }
 
-        // var_dump($data->toArray());
-        // Schema::create('')
-
-        //   $parse->save();
-        //   return redirect('/parse')->with('success', 'Item has been added');
+        return response()->json($result);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Parse  $parse
+     * @param  \App\Parse $parse
      * @return \Illuminate\Http\Response
      */
     public function show(Parse $parse)
@@ -85,7 +71,7 @@ class ParseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Parse  $parse
+     * @param  \App\Parse $parse
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -98,20 +84,20 @@ class ParseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Parse  $parse
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Parse $parse
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Parse $parse)
     {
         $request->validate([
-            'body'=>'required',
-            'name'=>'required',
-            'weight'=>'required',
-            'price'=>'required',
-            'misc'=>'required',
-            'source'=>'required',
-            'type'=>'required',
+            'body' => 'required',
+            'name' => 'required',
+            'weight' => 'required',
+            'price' => 'required',
+            'misc' => 'required',
+            'source' => 'required',
+            'type' => 'required',
         ]);
         $parse = Parse::find($parse);
         $parse->body = $request->get('body');
@@ -129,7 +115,7 @@ class ParseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Parse  $parse
+     * @param  \App\Parse $parse
      * @return \Illuminate\Http\Response
      */
     public function destroy(Parse $parse)
@@ -140,34 +126,35 @@ class ParseController extends Controller
         return redirect('/parse')->with('success', 'Item has been deleted Successfully');
     }
 
-    public function directoryToArray($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '') {
+    public function directoryToArray($directory, $recursive = true, $listDirs = false, $listFiles = true, $exclude = '')
+    {
         $arrayItems = array();
         $skipByExclude = false;
         $handle = opendir($directory);
         if ($handle) {
             while (false !== ($file = readdir($handle))) {
-            preg_match("/(^(([\.]){1,2})$|(\.(svn|git|md))|(Thumbs\.db|\.DS_STORE))$/iu", $file, $skip);
-            if($exclude){
-                preg_match($exclude, $file, $skipByExclude);
-            }
-            if (!$skip && !$skipByExclude) {
-                if (is_dir($directory. DIRECTORY_SEPARATOR . $file)) {
-                    if($recursive) {
-                        $arrayItems = array_merge($arrayItems, directoryToArray($directory. DIRECTORY_SEPARATOR . $file, $recursive, $listDirs, $listFiles, $exclude));
-                    }
-                    if($listDirs){
-                        $file = $directory . DIRECTORY_SEPARATOR . $file;
-                        $arrayItems[] = $file;
-                    }
-                } else {
-                    if($listFiles){
-                        $file = $directory . DIRECTORY_SEPARATOR . $file;
-                        $arrayItems[] = $file;
+                preg_match("/(^(([\.]){1,2})$|(\.(svn|git|md))|(Thumbs\.db|\.DS_STORE))$/iu", $file, $skip);
+                if ($exclude) {
+                    preg_match($exclude, $file, $skipByExclude);
+                }
+                if (!$skip && !$skipByExclude) {
+                    if (is_dir($directory . DIRECTORY_SEPARATOR . $file)) {
+                        if ($recursive) {
+                            $arrayItems = array_merge($arrayItems, directoryToArray($directory . DIRECTORY_SEPARATOR . $file, $recursive, $listDirs, $listFiles, $exclude));
+                        }
+                        if ($listDirs) {
+                            $file = $directory . DIRECTORY_SEPARATOR . $file;
+                            $arrayItems[] = $file;
+                        }
+                    } else {
+                        if ($listFiles) {
+                            $file = $directory . DIRECTORY_SEPARATOR . $file;
+                            $arrayItems[] = $file;
+                        }
                     }
                 }
             }
-        }
-        closedir($handle);
+            closedir($handle);
         }
         return $arrayItems;
     }
