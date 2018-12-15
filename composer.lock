@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "78c98b84be06e51cd3dbfb5f8b146254",
+    "content-hash": "2f4102101716b218fd4d8f66408da9f2",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -116,16 +116,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.9.0",
+            "version": "v2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "21fdabe2fc01e004e1966f200d900554876bc63c"
+                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/21fdabe2fc01e004e1966f200d900554876bc63c",
-                "reference": "21fdabe2fc01e004e1966f200d900554876bc63c",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
+                "reference": "ec74d6e300d78fbc896669c3ca57ef9719adc9c6",
                 "shasum": ""
             },
             "require": {
@@ -194,7 +194,7 @@
                 "php",
                 "queryobject"
             ],
-            "time": "2018-12-04T04:39:48+00:00"
+            "time": "2018-12-14T04:51:13+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -2279,46 +2279,6 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
-        },
-        {
-            "name": "shipping-docker/vessel",
-            "version": "3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shipping-docker/vessel.git",
-                "reference": "04b93f89d2351bfa7201cd2c822c25515dccbe46"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shipping-docker/vessel/zipball/04b93f89d2351bfa7201cd2c822c25515dccbe46",
-                "reference": "04b93f89d2351bfa7201cd2c822c25515dccbe46",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Vessel\\VesselServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Vessel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Fidao",
-                    "email": "fideloper@gmail.com"
-                }
-            ],
-            "description": "Simple Docker dev environments",
-            "time": "2018-10-16T16:39:15+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
