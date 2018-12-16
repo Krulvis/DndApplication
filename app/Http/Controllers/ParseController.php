@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Formatters\ItemParseFormatter;
+use App\Item;
 use App\Parse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +43,22 @@ class ParseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+
+        $result = [];
+        $data = $request->input();
+        $formatter = new ItemParseFormatter($data);
+        Item::create($formatter->format());
+
+        return response()->json($result);
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeOld(Request $request)
     {
 
         $result = [];

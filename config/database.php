@@ -42,14 +42,14 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('DB_HOST', 'localhost'),
-            'port'     => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', 'database'),
-            'username' => env('DB_USERNAME', 'homestead'),
-            'password' => env('DB_PASSWORD', 'secret'),
+            'host'     => env('MONGODB_DB_HOST', 'localhost'),
+            'port'     => env('MONGODB_DB_PORT', 27017),
+            'database' => env('MONGODB_DB_DATABASE'),
+            'username' => env('MONGODB_DB_USERNAME', ''),
+            'password' => env('MONGODB_DB_PASSWORD', ''),
             'options'  => [
-                'database' => '',
-            ]
+                'database' => 'admin', // sets the authentication database required by mongo 3
+            ],
         ],
 
         'mysql' => [
