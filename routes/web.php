@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('home');
 });
-Route::resource('parse', 'ParseController');
 
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
