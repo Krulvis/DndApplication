@@ -9,8 +9,7 @@
 namespace App\Formatters;
 
 
-class ItemParseFormatter
-{
+class ItemParseFormatter {
 
     protected $data;
 
@@ -18,24 +17,22 @@ class ItemParseFormatter
      * ItemParseFormatter constructor.
      * @param $data
      */
-    public function __construct(array $data)
-    {
+    public function __construct(array $data) {
         $this->data = $data;
     }
 
-    public function format(): array
-    {
+    public function format(): array {
         return $this->toArray((object)$this->data);
     }
 
-    protected function toArray(\stdClass $item): array
-    {
+    protected function toArray(\stdClass $item): array {
         unset($item->type);
+
         $data = [
             "name" => $item->name ?? "unknown",
             "source" => $item->source ?? "unknown",
             "price" => $item->price ?? "0 gp",
-            "weight" => $item->weight ?? "0 lbs",
+            "weight" => $this->handleWeight($item),
             "description" => $item->section->body ?? "",
             "categories" => isset($item->misc) ? array_keys($item->misc) : [],
         ];
@@ -45,6 +42,11 @@ class ItemParseFormatter
             }
         }
         return $data;
+    }
+
+    private function handleWeight(\stdClass $item) {
+        $weight = $item->weight ?? "0 lb.";
+        return str_contains($weight, "&mdash") ? "0 lb." : $weight;
     }
 
 }

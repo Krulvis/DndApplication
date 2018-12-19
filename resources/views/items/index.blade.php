@@ -15,24 +15,22 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <td>ID</td>
                 <td>Stock Name</td>
                 <td>Stock Price</td>
-                <td>Stock Quantity</td>
+                <td>Weight</td>
                 <td colspan="2">Action</td>
             </tr>
             </thead>
             <tbody>
-            {{-- @if($parses) --}}
-            @foreach($parses as $parse)
+            {{-- @if($items) --}}
+            @foreach($items as $item)
                 <tr>
-                    <td>{{$parse->id}}</td>
-                    <td>{{$parse->parse_name}}</td>
-                    <td>{{$parse->parse_price}}</td>
-                    <td>{{$parse->parse_qty}}</td>
-                    <td><a href="{{ route('parse.edit',$parse->id)}}" class="btn btn-primary">Edit</a></td>
+                    <td>{{$item->name}}</td>
+                    <td>{{$item->price}}</td>
+                    <td>{{$item->weight}}</td>
+                    <td><a href="{{ route('items.edit',$item->id)}}" class="btn btn-primary">Edit</a></td>
                     <td>
-                        <form action="{{ route('parse.destroy', $parse->id)}}" method="post">
+                        <form action="{{ route('items.destroy', $item->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit">Delete</button>

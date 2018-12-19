@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::resource('items', 'ItemController');
+
 Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('campaigns', 'CampaignsController');

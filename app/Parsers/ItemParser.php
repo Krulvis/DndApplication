@@ -33,14 +33,14 @@ class ItemParser {
                 $file = new \SplFileObject($file, "r");
                 $contents = json_decode($file->fread($file->getSize()), true);
                 $formatter = new ItemParseFormatter($contents);
-                Item::create($formatter->format());
+                Item::updateOrCreate($formatter->format());
             }
         }
     }
 
 
     /**
-     * @return \SplFileInfo[]
+     * @return RecursiveIteratorIterator
      */
     private function getFiles() {
         $it = new RecursiveDirectoryIterator($this->location);
