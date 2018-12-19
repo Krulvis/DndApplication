@@ -14,30 +14,27 @@ use App\Item;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
-class ItemParser
-{
+class ItemParser {
     protected $location;
 
     /**
      * ItemParser constructor.
      * @param $location
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->location = base_path(('items'));
     }
 
 
-    public function parseFiles()
-    {
+    public function parseFiles() {
         // Loop through files
         foreach ($this->getFiles() as $file) {
             if ($file->getExtension() == 'json') {
                 $file = new \SplFileObject($file, "r");
-                $contents = json_decode($file->fread($file->getSize()),true);
+                $contents = json_decode($file->fread($file->getSize()), true);
                 $formatter = new ItemParseFormatter($contents);
                 Item::create($formatter->format());
-         }
+            }
         }
     }
 
@@ -45,8 +42,7 @@ class ItemParser
     /**
      * @return \SplFileInfo[]
      */
-    private function getFiles()
-    {
+    private function getFiles() {
         $it = new RecursiveDirectoryIterator($this->location);
         return new RecursiveIteratorIterator($it);
     }
