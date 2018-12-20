@@ -9,10 +9,16 @@
                 <th>Role</th>
             </tr>
             @foreach($campaigns as $campaign)
+
                 <tr>
-                    <td>{{$campaign->title}}</td>
+                    <td>
+                        <a href="{{ route('campaigns.show', $campaign->id)}}">
+                            {{$campaign->title}}
+                        </a>
+                    </td>
                     <td>{{$campaign->role}}</td>
                 </tr>
+
             @endforeach
             </tbody>
         </table>
