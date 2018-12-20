@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder {
             UserTableSeeder::class,
             CampaignTablesSeeder::class,
             ParticipantTableSeeder::class,
-            RecapTableSeeder::class
+            RecapTableSeeder::class,
+            CampaignItemTableSeeder::class
         ]);
     }
 }
