@@ -20,10 +20,6 @@ class CheckParticipant {
             ['user_id', '=', $id],
             ['campaign_id', '=', $campaign]
         ]);
-        if ($record->exists()) {
-            return $next($request);
-        } else {
-            return redirect('/');
-        }
+        return $record->exists() ? $next($request) : redirect('/');
     }
 }
