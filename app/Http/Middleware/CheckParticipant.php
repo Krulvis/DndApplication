@@ -14,6 +14,8 @@ class CheckParticipant {
      * @return mixed
      */
     public function handle($request, Closure $next) {
+
+//        dd($request->route()->parameters());
         $id = $request->user()->id;
         $campaign = $request->route('campaign');
         $record = Participant::where([

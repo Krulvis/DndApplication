@@ -19,7 +19,7 @@ class CampaignsController extends Controller {
     public function __construct() {
         $this->middleware('auth');
 
-        $this->middleware('participant', ['only' => ['show']]);
+        $this->middleware('participant', ['only' => ['show', 'items']]);
     }
 
     /**
@@ -109,5 +109,19 @@ class CampaignsController extends Controller {
      */
     public function destroy($id) {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function items($campaign) {
+        //
+        $campaign = Campaign::find($campaign);
+
+        return view('campaigns.items')->with('campaign', $campaign);
     }
 }
