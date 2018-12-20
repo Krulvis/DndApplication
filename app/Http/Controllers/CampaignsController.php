@@ -121,7 +121,6 @@ class CampaignsController extends Controller {
     public function items($campaign) {
         //
         $campaign = Campaign::find($campaign);
-
-        return view('campaigns.items')->with('campaign', $campaign);
+        return view('campaigns.items')->with('campaign', $campaign)->with('items', $campaign->items());
     }
 }

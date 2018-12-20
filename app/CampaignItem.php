@@ -12,4 +12,12 @@ class CampaignItem extends Model {
         'owned_by',
         'carried_by'
     ];
+
+    public function campaign() {
+        return $this->belongsTo('App\Campaign');
+    }
+
+    public function info() {
+        return $this->belongsTo('App\Item')->first();
+    }
 }

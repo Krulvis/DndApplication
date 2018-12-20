@@ -14,4 +14,8 @@ class Campaign extends Model {
     public function users() {
         return $this->belongsToMany('App\User', 'participants');
     }
+
+    public function items() {
+        return $this->hasMany('App\CampaignItem');
+    }
 }
