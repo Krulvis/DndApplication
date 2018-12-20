@@ -8,7 +8,9 @@ class Campaign extends Model {
     //
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'money',
+        'spent'
     ];
 
     public function users() {
@@ -18,4 +20,5 @@ class Campaign extends Model {
     public function items() {
         return $this->hasMany('App\CampaignItem');
     }
+
 }
