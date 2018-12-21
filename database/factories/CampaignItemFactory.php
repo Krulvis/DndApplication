@@ -23,7 +23,7 @@ $factory->define(App\CampaignItem::class, function (Faker $faker) {
     return [
         'campaign_id' => $participant->campaign_id,
         'item_id' => Item::first()->id,
-        'owned_by' => $participant->user_id,
+        'quantity' => random_int(1, 99),
         'carried_by' => $participant->user_id,
     ];
 });

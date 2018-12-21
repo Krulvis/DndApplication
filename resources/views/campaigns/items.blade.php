@@ -17,6 +17,9 @@
                 <td>Stock Name</td>
                 <td>Stock Price</td>
                 <td>Weight</td>
+                <td>Quantity</td>
+                <td>Owned by</td>
+                <td>Carried by</td>
                 <td colspan="2">Action</td>
             </tr>
             </thead>
@@ -26,6 +29,9 @@
                     <td>{{$item->info()->name}}</td>
                     <td>{{$item->info()->price}}</td>
                     <td>{{$item->info()->weight}}</td>
+                    <td>{{$item->quantity}}</td>
+                    <td>{{$item->owner()->name}}</td>
+                    <td>{{$item->carrier()->name}}</td>
                     <td><a href="{{ route('items.edit',$item->info()->id)}}" class="btn btn-primary">Edit</a></td>
                     <td>
                         <form action="{{ route('items.destroy', $item->info()->id)}}" method="post">

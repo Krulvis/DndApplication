@@ -2,13 +2,21 @@
 
 use Illuminate\Database\Seeder;
 
-class UserTableSeeder extends Seeder {
+class UserTableSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
+        DB::table('users')->insert([
+            'id' => '1',
+            'name' => 'everyone',
+            'email' => 'everyone@dnd.nl',
+            'password' => bcrypt('secret'),
+        ]);
         factory(App\User::class, 10)->create();
     }
 }
