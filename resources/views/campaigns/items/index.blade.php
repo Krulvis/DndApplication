@@ -26,7 +26,7 @@
             <tbody>
             @foreach($items->get() as $item)
                 <tr>
-                    <td>{{$item->info()->name}}</td>
+                    <td><a href="{{route('items.edit',$item->info()->id)}}">{{$item->info()->name}}</a></td>
                     <td>{{$item->info()->price}}</td>
                     <td>{{$item->info()->weight}}</td>
                     <td>{{$item->quantity}}</td>
