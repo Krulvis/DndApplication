@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('home');
     });
 
-    Route::get('campaigns/{campaign}/items', 'CampaignsController@items')->name('campaign.items');
+    Route::get('campaign/{campaign}/items', 'CampaignsController@items')->name('campaign.items.index');
     Route::resource('campaigns', 'CampaignsController');
 
     Route::resource('recaps', 'RecapController');
