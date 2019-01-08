@@ -32,9 +32,11 @@
                     <td>{{$item->quantity}}</td>
                     <td>{{$item->owner()->name}}</td>
                     <td>{{$item->carrier()->name}}</td>
-                    <td><a href="{{ route('items.edit',$item->info()->id)}}" class="btn btn-primary">Edit</a></td>
+                    <td><a href="{{ route('campaigns.items.edit', ['campaign' => $campaign->id, 'item'=> $item->id])}}"
+                           class="btn btn-primary">Edit</a></td>
                     <td>
-                        <form action="{{ route('items.destroy', $item->info()->id)}}" method="post">
+                        <form action="{{ route('campaigns.items.destroy', ['campaign' => $campaign->id, 'item'=> $item->id])}}"
+                              method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger" type="submit">Delete</button>

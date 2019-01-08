@@ -111,16 +111,4 @@ class CampaignsController extends Controller {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function items($campaign) {
-        //
-        $campaign = Campaign::find($campaign);
-        return view('campaigns.items.index')->with('campaign', $campaign)->with('items', $campaign->items());
-    }
 }
