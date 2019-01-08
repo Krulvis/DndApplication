@@ -25,7 +25,6 @@ class ItemParser
     public function __construct()
     {
         $this->location = base_path(('items'));
-        dd($this->location);
     }
 
 
