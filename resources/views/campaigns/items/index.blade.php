@@ -32,7 +32,7 @@
                     <td>{{$item->quantity}}</td>
                     <td>{{$item->owner()->name}}</td>
                     <td>{{$item->carrier()->name}}</td>
-                    <td><a href="{{ route('campaigns.items.edit', ['campaign' => $campaign->id, 'item'=> $item->id])}}"
+                    <td><a href="{{ route('campaigns.items.edit', ['campaign' => $campaign, 'item'=> $item])}}"
                            class="btn btn-primary">Edit</a></td>
                     <td>
                         <form action="{{ route('campaigns.items.destroy', ['campaign' => $campaign->id, 'item'=> $item->id])}}"

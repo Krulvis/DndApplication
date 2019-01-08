@@ -8,7 +8,7 @@
     </style>
     <div class="card uper">
         <div class="card-header">
-            Edit Campaign Item
+            Editing {{$item->info()->name}}.
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -20,20 +20,30 @@
                     </ul>
                 </div><br/>
             @endif
-            <form method="post" action="{{ route('campaigns.items.update', $item->id) }}">
+            <form method="post"
+                  action="{{ route('campaigns.items.update', ['campaign' => $campaign,'item' => $item]) }}">
                 @method('PATCH')
                 @csrf
                 <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" name="share_name" value="{{ $item->name }}"/>
+                    <label for="name">Quantity:</label>
+                    <input type="text" class="form-control" name="share_name" value="{{ $item->quantity }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="price">Price :</label>
-                    <input type="text" class="form-control" name="share_price" value="{{ $item->price }}"/>
+                    <label for="owner">Owner:</label>
+                    <select>
+                        @foreach($campaign->users()->get() as $user)
+                            <option value="{{$user->name}}">{{$user->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="quantity">Weight:</label>
-                    <input type="text" class="form-control" name="share_qty" value="{{ $item->weight}}"/>
+                    <label for="carrier">Carried by:</label>
+                    <label for="price">Owner:</label>
+                    <select>
+                        @foreach($campaign->users()->get() as $user)
+                            <option value="{{$user->name}}">{{$user->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
