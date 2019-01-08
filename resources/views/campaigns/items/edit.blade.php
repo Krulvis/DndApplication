@@ -31,6 +31,7 @@
                 <div class="form-group">
                     <label for="owner">Owner:</label>
                     <select>
+                        <option value="{{$item->owner()->name}}" disabled selected>{{$item->owner()->name}}</option>
                         @foreach($campaign->users()->get() as $user)
                             <option value="{{$user->name}}">{{$user->name}}</option>
                         @endforeach
@@ -38,8 +39,8 @@
                 </div>
                 <div class="form-group">
                     <label for="carrier">Carried by:</label>
-                    <label for="price">Owner:</label>
                     <select>
+                        <option value="{{$item->carrier()->name}}" disabled selected>{{$item->carrier()->name}}</option>
                         @foreach($campaign->users()->get() as $user)
                             <option value="{{$user->name}}">{{$user->name}}</option>
                         @endforeach
