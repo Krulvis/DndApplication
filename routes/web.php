@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('recaps', 'RecapController');
     Route::resource('campaigns', 'CampaignsController');
     Route::resource('campaigns.items', 'CampaignItemsController');
+    Route::delete('/campaigns/{campaign}/items/{item}/sell', 'CampaignItemsController@sell')->name('campaigns.items.sell');
 
 
     // Route::resource('parse', 'ParseController');

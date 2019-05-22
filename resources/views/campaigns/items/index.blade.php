@@ -4,6 +4,7 @@
     <div>
         <h1>{{$campaign->title}}</h1>
         <h1>Items</h1>
+        <h1>Money: {{$campaign->spendable}}</h1>
     </div>
     <div class="uper">
         @if(session()->get('success'))
@@ -35,11 +36,11 @@
                     <td><a href="{{ route('campaigns.items.edit', ['campaign' => $campaign, 'item'=> $item])}}"
                            class="btn btn-primary">Edit</a></td>
                     <td>
-                        <form action="{{ route('campaigns.items.destroy', ['campaign' => $campaign->id, 'item'=> $item->id])}}"
+                        <form action="{{ route('campaigns.items.sell', ['campaign' => $campaign->id, 'item'=> $item->id])}}"
                               method="post">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete</button>
+                            <button class="btn btn-danger" type="submit">Sell</button>
                         </form>
                     </td>
                 </tr>

@@ -17,8 +17,11 @@ class Campaign extends Model {
         return $this->belongsToMany('App\User', 'participants');
     }
 
+    public function getSpendableAttribute() {
+        return ($this->getAttributeValue('money') - $this->getAttributeValue('spent'));
+    }
+
     public function items() {
         return $this->hasMany('App\CampaignItem');
     }
-
 }
