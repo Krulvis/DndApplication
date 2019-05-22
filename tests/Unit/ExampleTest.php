@@ -6,6 +6,7 @@ use App\Campaign;
 use App\CampaignItem;
 use App\Item;
 use App\Parsers\ItemParser;
+use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -46,5 +47,17 @@ class ExampleTest extends TestCase
         $category = 'Weapon';
 
         dd(Item::where('categories', 'all', [$category])->get()->toArray());
+    }
+
+    public function testApiRoutes()
+    {
+        $user = new User(array('email' => 'joep@live.nl'));
+        $this->be($user);
+
+        $response = $this->call('DELETE', 'api/campaigns/2/items/1/sell');
+
+        dd($response);
+        $this->assertEquals(200, $response->getStatusCode());
+//        $this->assertRedirectedTo('questions');
     }
 }
