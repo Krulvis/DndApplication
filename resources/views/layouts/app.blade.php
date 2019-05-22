@@ -14,6 +14,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://use.typekit.net/gab7joi.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
 
@@ -43,6 +44,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('recaps.index') }}">Recaps</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('campaigns.index') }}">Campaigns</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('items.index') }}">Items</a>
+                        </li>                        
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

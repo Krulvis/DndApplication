@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -17,7 +16,31 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
+
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+
+Vue.use(VueAxios, axios);
+
+import example from './components/ExampleComponent.vue';
+
+Vue.component('example', require('./components/ExampleComponent.vue'));
+
+const routes = [{
+    name: 'home',
+    path: '/home',
+    component: example
+}]
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes
+});
+const app = new Vue(Vue.util.extend({
+    router
+})).$mount('#app');
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -30,7 +53,3 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-const app = new Vue({
-    el: '#app'
-});

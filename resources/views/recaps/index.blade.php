@@ -7,7 +7,7 @@
                 <h2>Hier komen recaps</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('recaps.create') }}"> Create New Recap</a>
+                <a class="btn btn-create" href="{{ route('recaps.create') }}"> Create New Recap</a>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
         </div>
     @endif
    
-    <table class="table table-bordered">
+    <table class="table">
         <tr>
             <th>No</th>
             <th>Name</th>
