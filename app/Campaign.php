@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Campaign extends Model {
     //
@@ -13,7 +15,7 @@ class Campaign extends Model {
         'spent'
     ];
 
-    public function users() {
+    public function users(): BelongsToMany {
         return $this->belongsToMany('App\User', 'participants');
     }
 
@@ -21,7 +23,7 @@ class Campaign extends Model {
         return ($this->getAttributeValue('money') - $this->getAttributeValue('spent'));
     }
 
-    public function items() {
+    public function items(): HasMany {
         return $this->hasMany('App\CampaignItem');
     }
 }

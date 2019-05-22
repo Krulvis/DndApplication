@@ -48,12 +48,14 @@ class CampaignItemsController extends Controller {
      * @param CampaignItem $item
      * @return \Illuminate\Http\Response
      */
-    public function sell(CampaignItem $item) {
+    public function sell(Request $request, $id) {
+        $item = CampaignItem::find($id);
+        dd($item);
         $campaign = $item->campaign();
-        $worth = $item->info()->getAttributeValue('Cost');
+        $worth = $item->info()->cost;
         $success = $campaign->update(['money' => ($campaign->getAttributeValue('money') + $worth)]);
 
-
+        dd($success);
         return redirect()->route('campaigns.items.index')
             ->with('success', 'Item sold ' . ($success ? 'successfully' : 'unsuccessful'))
             ->with('campaign', $campaign)

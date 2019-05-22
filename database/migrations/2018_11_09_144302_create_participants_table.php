@@ -15,6 +15,7 @@ class CreateParticipantsTable extends Migration {
             $table->integer('user_id');
             $table->integer('campaign_id');
             $table->string('role');
+            $table->integer('money');
             $table->timestamps();
         });
     }

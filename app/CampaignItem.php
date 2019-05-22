@@ -3,9 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class CampaignItem extends Model
-{
+class CampaignItem extends Model {
     //
     protected $fillable = [
         'item_id',
@@ -15,23 +15,19 @@ class CampaignItem extends Model
         'carried_by'
     ];
 
-    public function campaign()
-    {
-        return $this->belongsTo('App\Campaign')->first();
+    public function campaign(): BelongsTo {
+        return $this->belongsTo('App\Campaign');
     }
 
-    public function carrier()
-    {
-        return $this->belongsTo('App\User', $ownerKey = 'carried_by')->first();
+    public function carrier(): BelongsTo {
+        return $this->belongsTo('App\User', $ownerKey = 'carried_by');
     }
 
-    public function owner()
-    {
-        return $this->belongsTo('App\User', $ownerKey = 'owned_by')->first();
+    public function owner(): BelongsTo {
+        return $this->belongsTo('App\User', $ownerKey = 'owned_by');
     }
 
-    public function info()
-    {
-        return $this->belongsTo('App\Item')->first();
+    public function info(): BelongsTo {
+        return $this->belongsTo('App\Item');
     }
 }

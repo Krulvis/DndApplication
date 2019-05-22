@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -33,7 +34,7 @@ class User extends Authenticatable {
         'remember_token',
     ];
 
-    public function campaigns() {
+    public function campaigns(): BelongsToMany {
         return $this->belongsToMany('App\Campaign', 'participants');
     }
 }
