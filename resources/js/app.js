@@ -32,26 +32,26 @@ import {
 const httpLink = createHttpLink({
     // You should use an absolute URL here
     uri: '/graphql',
-})
+});
 
 // Cache implementation
-const cache = new InMemoryCache()
+const cache = new InMemoryCache();
 
 // Create the apollo client
 const apolloClient = new ApolloClient({
     link: httpLink,
     cache,
-})
+});
 
 // ACTIVATE APOLLO
 import Vue from 'vue'
 import VueApollo from 'vue-apollo'
 
-Vue.use(VueApollo)
+Vue.use(VueApollo);
 
 const apolloProvider = new VueApollo({
     defaultClient: apolloClient,
-})
+});
 
 
 
@@ -64,8 +64,6 @@ import axios from 'axios';
 
 Vue.use(VueAxios, axios);
 
-import example from './components/ExampleComponent.vue';
-
 import CampaignDescription from './components/CampaignDescription.vue';
 
 Vue.component('example', require('./components/ExampleComponent.vue').default);
@@ -75,12 +73,13 @@ const routes = [{
     name: 'home',
     path: '/home',
     component: CampaignDescription
-}]
+}];
 
 const router = new VueRouter({
     mode: 'history',
     routes: routes
 });
+
 const app = new Vue(Vue.util.extend({
     router,
     // inject apolloProvider here like vue-router or vuex
