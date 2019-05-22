@@ -1,26 +1,42 @@
 <template>
   <div class="card">
-    <h1>{{ campaignJson.title }}</h1>
-    <p>{{ campaignJson.description }}</p>
+    <h1>{{ campaign.title }}</h1>
+    <p>{{ campaign.description }}</p>
   </div>
 </template>
 
 <script>
+import gql from "graphql-tag";
+import apollo from "vue-apollo";
+
+// import campaignQuery from "~./queries/campaign.graphql";
+
 export default {
   data() {
     return {
-      campaignJson: {
-        title: "",
-        description: "",
-        id: ""
+      campaign: {
+        title: undefined,
+        id: 5,
+        description: undefined,
+        routeParam: this.$route.params.id
       }
     };
   },
-  created() {
-    let uri = "/api/campaigns/1";
-    this.axios.get(uri).then(response => {
-      this.campaignJson = response.data.data;
-    });
+  apollo: {
+    campaign: gql`
+      query {
+        campaign(id: id) {
+          id
+          title
+          description
+        }
+      }
+    `,
+    variables: {
+      return {
+        id: this.$route.params.id
+      }
+    }
   }
 };
 </script>

@@ -16,6 +16,46 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
+
+//  APOLLO
+import {
+    ApolloClient
+} from 'apollo-client'
+import {
+    createHttpLink
+} from 'apollo-link-http'
+import {
+    InMemoryCache
+} from 'apollo-cache-inmemory'
+
+// HTTP connection to the API
+const httpLink = createHttpLink({
+    // You should use an absolute URL here
+    uri: '/graphql',
+})
+
+// Cache implementation
+const cache = new InMemoryCache()
+
+// Create the apollo client
+const apolloClient = new ApolloClient({
+    link: httpLink,
+    cache,
+})
+
+// ACTIVATE APOLLO
+import Vue from 'vue'
+import VueApollo from 'vue-apollo'
+
+Vue.use(VueApollo)
+
+const apolloProvider = new VueApollo({
+    defaultClient: apolloClient,
+})
+
+
+
+//  VUE ROUTER
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
@@ -26,13 +66,15 @@ Vue.use(VueAxios, axios);
 
 import example from './components/ExampleComponent.vue';
 
-Vue.component('example', require('./components/ExampleComponent.vue'));
-Vue.component('campaign-description', require('./components/CampaignDescription.vue'));
+import CampaignDescription from './components/CampaignDescription.vue';
+
+Vue.component('example', require('./components/ExampleComponent.vue').default);
+Vue.component('CampaignDescription', require('./components/CampaignDescription.vue').default);
 
 const routes = [{
     name: 'home',
     path: '/home',
-    component: example
+    component: CampaignDescription
 }]
 
 const router = new VueRouter({
@@ -40,7 +82,9 @@ const router = new VueRouter({
     routes: routes
 });
 const app = new Vue(Vue.util.extend({
-    router
+    router,
+    // inject apolloProvider here like vue-router or vuex
+    apolloProvider
 })).$mount('#app');
 
 // const files = require.context('./', true, /\.vue$/i)

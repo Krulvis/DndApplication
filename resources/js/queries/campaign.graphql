@@ -1,0 +1,7 @@
+query {
+	campaign(id: 4) {
+		id
+		title
+		description
+	}
+}
