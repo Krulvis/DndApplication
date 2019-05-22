@@ -74,7 +74,10 @@ class CampaignsController extends Controller {
         //
         $campaign = Campaign::find($id);
 
-        return view('campaigns.show')->with('campaign', $campaign);
+        $campaignJson = response()->json($campaign);
+        return view('campaigns.show')
+        ->with('campaign', $campaign)
+        ->with('campaignJson', $campaignJson);
     }
 
     /**

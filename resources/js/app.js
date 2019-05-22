@@ -27,6 +27,7 @@ Vue.use(VueAxios, axios);
 import example from './components/ExampleComponent.vue';
 
 Vue.component('example', require('./components/ExampleComponent.vue'));
+Vue.component('campaign-description', require('./components/CampaignDescription.vue'));
 
 const routes = [{
     name: 'home',
