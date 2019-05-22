@@ -19,6 +19,7 @@ class ParticipantTableSeeder extends Seeder {
             'user_id' => DB::table('users')->where('name', '=', 'Joep KT')->first()->id,
             'campaign_id' => random_int(\DB::table('campaigns')->min('id'), \DB::table('campaigns')->max('id')),
             'role' => 'DM',
+            'character' => 'Swekkerman',
             'money' => random_int(0, 1000)
         ]);
         factory(App\Participant::class, 100)->create();

@@ -10,6 +10,7 @@ class Participant extends Model {
 		'user_id',
 		'campaign_id',
 		'role',
+        'character',
         'money'
 	];
 }
