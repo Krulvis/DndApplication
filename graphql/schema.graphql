@@ -1,43 +1,46 @@
-scalar DateTime @scalar(class: "Nuwave\Lighthouse\Schema\Types\Scalars\DateTime")
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-scalar Date @scalar(class: "Nuwave\Lighthouse\Schema\Types\Scalars\Date")
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
-	items: [Item!]! @paginate(type: "paginator", model: "App\Item")
-	users: [User!]! @paginate(type: "paginator", model: "App\User")
-	user(id: ID @eq): User @find(model: "App\User")
-	campaign(id: ID @eq): Campaign @find(model: "App\Campaign")
-	campaignItem(id: ID @eq): CampaignItem @find(model: "App\CampaignItem")
-	item(id: ID @eq): Item @find(model: "App\Item")
+    items: [Item!]! @paginate(type: "paginator", model: "App\\Item")
+    users: [User!]! @paginate(type: "paginator", model: "App\\User")
+
+    user(id: ID @eq): User @find(model: "App\\User")
+    campaign(id: ID @eq): Campaign @find(model: "App\\Campaign")
+    campaignItem(id: ID @eq): CampaignItem @find(model: "App\\CampaignItem")
+    item(id: ID @eq): Item @find(model: "App\\Item")
 }
 
 type User {
-	id: ID!
-	name: String!
-	email: String!
-	created_at: DateTime!
-	updated_at: DateTime!
-	#    campaigns: [Campaign!]! @BelongsToMany
+    id: ID!
+    name: String!
+    email: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    #    campaigns: [Campaign!]! @BelongsToMany
 }
 
 type Campaign {
-	id: ID!
-	title: String!
-	description: String!
-	items: [CampaignItem!] @hasMany
+    id: ID!
+    title: String!
+    description: String!
+    items: [CampaignItem!] @hasMany
 }
 
-type CampaignItem {
-	id: ID!
-	item_id: String!
-	campaign: Campaign! @belongsTo
-	carrier: User! @belongsTo
-	owner: User! @belongsTo
-	info: Item! @first
+type CampaignItem{
+    id: ID!
+    item_id: String!
+    campaign: Campaign! @belongsTo
+    carrier: User! @belongsTo
+    owner: User! @belongsTo
+    info: Item! @first
 }
 
-type Item {
-	_id: ID!
-	name: String
-	price: Int!
+type Item{
+    id: ID!
+    name: String
+    price: Int!
 }
+
+
