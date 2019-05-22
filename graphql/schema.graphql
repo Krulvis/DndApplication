@@ -5,8 +5,10 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 type Query {
     items: [Item!]! @paginate(type: "paginator", model: "App\\Item")
     users: [User!]! @paginate(type: "paginator", model: "App\\User")
+    campaigns: [Campaign!]! @paginate(type: "paginator", model: "App\\Campaign")
 
     user(id: ID @eq): User @find(model: "App\\User")
+    participant(user_id: ID @eq, campaign_id: ID @eq): Participant @find(model: "App\\Participant")
     campaign(id: ID @eq): Campaign @find(model: "App\\Campaign")
     campaignItem(id: ID @eq): CampaignItem @find(model: "App\\CampaignItem")
     item(id: ID @eq): Item @find(model: "App\\Item")
@@ -18,7 +20,7 @@ type User {
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
-    #    campaigns: [Campaign!]! @BelongsToMany
+    campaigns: [Campaign!]! @belongsToMany
 }
 
 type Campaign {
@@ -26,6 +28,16 @@ type Campaign {
     title: String!
     description: String!
     items: [CampaignItem!] @hasMany
+    participants: [Participant!] @hasMany
+    users: [User!] @belongsToMany
+}
+
+type Participant{
+    user_id: ID!
+    campaign_id: ID!
+    money: Int!
+    role: String!
+    character: String!
 }
 
 type CampaignItem{
